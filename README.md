@@ -12,18 +12,18 @@ How to export data from power BI to power point.
 
 ## Requirements:
 ### Software
-1- Python.\n
-2- Power BI Desktop.\n
-3- Power Point.\n
-4- Anaconda [Optional].\n
+1- Python
+2- Power BI Desktop
+3- Power Point
+4- Anaconda [Optional]
 ### Packages
-1- Python-pptx.\n
-2- imgkit.\n
-3- Pandas.\n
+1- Python-pptx
+2- imgkit
+3- Pandas
 ### Libraries
-1- MSOLAP.\n
-2- AMO.\n
-3- ADOMD.\n
+1- MSOLAP
+2- AMO
+3- ADOMD
 
 ## [Python as an “External Tool” for Power BI Desktop](https://dataveld.com/2020/07/20/python-as-an-external-tool-for-power-bi-desktop-part-1/)
 This is a guide on how to run a **python** script from within **Power BI**, 
@@ -41,7 +41,7 @@ That you should make your data source in the power bi's model.
 ### The goal is to group that table by Year to know total number of purchases per year.
 
 
-'''python
+```python
 import sys
 import ssas_api as powerbi
 import pandas as pd
@@ -112,4 +112,4 @@ DatabaseId = str(sys.argv[2])
 PowerBIDatabase = TOMServer.Databases[DatabaseId]
 
 
-'''
+```
