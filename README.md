@@ -31,7 +31,7 @@ it will point you to the configuration needed, and where to save the configurati
 so that will save you some time, to only learn how to setup the configuration and save its file.
 
 ## EPPT "Export to Power Point" tool:
-For the sake of this guide, I created a sample Excel sheet with some random data with the following fields:
+For the sake of this guide, I created a sample Excel *EPPT_test_data.xlsx* sheet with some random data with the following fields:
 
 | Customer | Number of Purchases | Year |
 | -------- | ------------------- | ---- |
