@@ -32,13 +32,14 @@ so that will save you some time, to only learn how to setup the configuration an
 
 ## EPPT "Export to Power Point" tool:
 For the sake of this guide, I created a sample Excel sheet with some random data with the following fields:
-Customer | Number of Purchases | Year
--------- | ------------------- | ----
-A | 43 | 2020
-B | 23 | 2021
+
+| Customer | Number of Purchases | Year |
+| -------- | ------------------- | ---- |
+| A | 43 | 2020                         |
+| B | 23 | 2021                         |
 
 That you should make your data source in the power bi's model.
-### The goal is to group that table by Year to know total number of purchases per year.
+*The goal is to group that table by Year to know the total number of purchases per year.*
 
 
 ```python
