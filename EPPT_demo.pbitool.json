@@ -1,0 +1,8 @@
+{
+    "version": "1.0",
+    "name": "EPPT",
+    "description": "Exports visuals to Power Point",
+    "path": "C:\\Users\\LHCZ5828\\Anaconda3\\python.exe",
+    "arguments": "C:\\Users\\LHCZ5828\\Anaconda3\\cwp.py C:/Users/LHCZ5828/Anaconda3/envs/powerbi C:/Users/LHCZ5828/Anaconda3/python.exe C:/Users/LHCZ5828/Desktop/Power_BI_training/External_tool/EPPT_demo.py \"%server%\" \"%database%\"",
+    "iconData" : "image/png;base64, C:\\Users\\LHCZ5828\\Pictures\\Saved Pictures\\powerpoint.png"
+  }
