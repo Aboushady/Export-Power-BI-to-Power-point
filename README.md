@@ -13,24 +13,24 @@ How to export data from power BI to power point.
 ## Requirements:
 ### Software
 
-1- Python
-2- Power BI Desktop
-3- Power Point
-4- Anaconda [Optional]
+1. Python
+2. Power BI Desktop
+3. Power Point
+4. Anaconda [Optional]
 
 ### Packages
 
-1- Python-pptx
-2- imgkit
-3- Pandas
-4- Pythonnet,  package for .NET CLR
-5- Python-SSAS, module (ssas_api.py placed in the same folder as the main script you’d like to run)
+1. Python-pptx
+2. imgkit
+3. Pandas
+4. Pythonnet,  package for .NET CLR
+5. Python-SSAS, module (ssas_api.py placed in the same folder as the main script you’d like to run)
 
 ### Libraries
 
-1- MSOLAP
-2- AMO
-3- ADOMD
+1. MSOLAP
+2. AMO
+3. ADOMD
 
 ## [Python as an “External Tool” for Power BI Desktop](https://dataveld.com/2020/07/20/python-as-an-external-tool-for-power-bi-desktop-part-1/)
 This is a guide on how to run a **python** script from within **Power BI**, 
