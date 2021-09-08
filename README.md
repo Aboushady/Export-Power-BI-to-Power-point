@@ -79,6 +79,13 @@ print(conn)
 
 **sys.argv[1]** is the argument corresponding to server and **sys.argv[2]** is the database GUID.
 
+### Loading the .Net assemblies.
+```python
+
+dax_string = 'EVALUATE ROW("Loading .NET assemblies",1)'
+df = powerbi.get_DAX(connection_string=conn, dax_string=dax_string)
+
+```
 
 ### Get PBI model's Meta data throguh TOM 
 ```python
