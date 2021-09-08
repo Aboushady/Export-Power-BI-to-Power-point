@@ -12,26 +12,34 @@ How to export data from power BI to power point.
 
 ## Requirements:
 ### Software
+
 1- Python
 2- Power BI Desktop
 3- Power Point
 4- Anaconda [Optional]
+
 ### Packages
+
 1- Python-pptx
 2- imgkit
 3- Pandas
+4- Pythonnet,  package for .NET CLR
+5- Python-SSAS, module (ssas_api.py placed in the same folder as the main script you’d like to run)
+
 ### Libraries
+
 1- MSOLAP
 2- AMO
 3- ADOMD
 
 ## [Python as an “External Tool” for Power BI Desktop](https://dataveld.com/2020/07/20/python-as-an-external-tool-for-power-bi-desktop-part-1/)
 This is a guide on how to run a **python** script from within **Power BI**, 
-it will point you to the configuration needed, and where to save the configuration files. In the following Python script I used his script to connect to power bi's model,
-so that will save you some time, to only learn how to setup the configuration and save its file.
+it will point you to the configuration needed, and where to save the configuration files. Also provides the python script to connect to PBI's model,
+Here I am simply reusing and referncing it to showing you some things you can do with this data. Hence, you can save you some time, by only refering to [part 2](https://dataveld.com/2020/07/21/python-as-an-external-tool-in-power-bi-desktop-part-2-create-a-pbitool-json-file/) to learn 
+how to setup the configuration PBItool.jason file and where to save it, but I strongly suggest that you read the whole thing.
 
 ## EPPT "Export to Power Point" tool:
-For the sake of this guide, I created a sample Excel *EPPT_test_data.xlsx* sheet with some random data with the following fields:
+For the sake of this guide, I created a sample Excel sheet *EPPT_test_data.xlsx*  with some random data with the following fields:
 
 | Customer | Number of Purchases | Year |
 | -------- | ------------------- | ---- |
@@ -40,6 +48,12 @@ For the sake of this guide, I created a sample Excel *EPPT_test_data.xlsx* sheet
 
 That you should make your data source in the power bi's model.
 *The goal is to group that table by Year to know the total number of purchases per year.*
+
+## Connecting to  Tabular Object Model (TOM)
+TOM is the .Net library opens Power BI’s data model to external tools.
+The *python-ssas (ssas_api.py)* Python module that facilitates the TOM connection is all the work of Josh Dimarsky–originally for querying and processing Analysis Services.
+Everything relies on Josh’s Python module, which has functions to connect to TOM, run DAX queries, etc.
+As long as Power BI Desktop is installed, you should not have to manually obtain the required DLLs. You could get them from [Microsoft directly](https://docs.microsoft.com/en-us/analysis-services/client-libraries?view=azure-analysis-services-current) though if needed.
 
 
 ```python
@@ -50,7 +64,7 @@ import pandas as pd
 
 """
 Part 0:
-    Refer to this guid for info regarding the connection to Power BI's data base.
+    Refer to this guide for info regarding the connection to Power BI's data model.
     https://dataveld.com/2020/07/20/python-as-an-external-tool-for-power-bi-desktop-part-1/
 """
 
@@ -61,10 +75,13 @@ print(str(sys.argv[2]))
 conn = "\nProvider=MSOLAP;Data Source=" + str(sys.argv[1]) + ";Initial Catalog='';"
 print(conn)
 
+```
 
-dax_string = 'EVALUATE ROW("Loading .NET assemblies",1)'
-df = powerbi.get_DAX(connection_string=conn, dax_string=dax_string)
+**sys.argv[1]** is the argument corresponding to server and **sys.argv[2]** is the database GUID.
 
+
+### Get PBI model's Meta data throguh TOM 
+```python
 print("\nCrossing the streams...")
 global System, DataTable, AMO, ADOMD
 
@@ -80,11 +97,6 @@ import System
 from System.Data import DataTable
 import Microsoft.AnalysisServices.Tabular as TOM
 import Microsoft.AnalysisServices.AdomdClient as ADOMD
-from pptx import Presentation
-from pptx.util import Inches
-import plotly.express as px
-from pandas.plotting import table
-import imgkit
 
 print("\nReticulating splines...")
 
@@ -92,25 +104,18 @@ print("\nReticulating splines...")
 # Connecting to Tabular AnalysisServices.
 TOMServer = TOM.Server()
 TOMServer.Connect(conn)
+```
 
-print("\nConnectoin Successfully to TOM's Server...")
-print()
+### Get the database info with the database GUID "sys.argv[2]".
 
-# Show Databases info
-for item in TOMServer.Databases:
-    print("Database: ", item.Name)
-    print("Compatibility Level: ", item.CompatibilityLevel)
-    print("Created: ", item.CreatedTimestamp)
-
-input("Click to cont.")
-
-'''
-Retrieve the Meta data for the database we got from the connection earlier,
-from TOM's databases.
-'''
+```python
 
 DatabaseId = str(sys.argv[2])
 PowerBIDatabase = TOMServer.Databases[DatabaseId]
+
+print("Listing tables...")
+for table in PowerBIDatabase.Model.Tables:
+    print(table.Name + "\n")
 
 
 ```
